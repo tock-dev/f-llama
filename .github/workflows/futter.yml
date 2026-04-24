@@ -18,23 +18,23 @@ jobs:
           - os: ubuntu-latest
             flutter_os: apk
             archive_path: 0
-            artifact_name: release.apk
+            artifact_name: build/app/outputs/flutter-apk/app-release.apk
             asset_name: fllama-android
           - os: windows-latest
             flutter_os: windows
             archive_path: build/windows/runner/Release/
             artifact_name: release.zip
             asset_name: fllama-windows
-          - os: macos-latest
-            flutter_os: macos
-            archive_path: build/macos/Build/Products/Release/
-            artifact_name: release.app
-            asset_name: fllama-macos
-          - os: macos-latest
-            flutter_os: ios
-            archive_path: build/ios/ipa/
-            artifact_name: release.zip
-            asset_name: fllama-ios
+          # - os: macos-latest
+          #   flutter_os: macos
+          #   archive_path: build/macos/Build/Products/Release/
+          #   artifact_name: release.app
+          #   asset_name: fllama-macos
+          # - os: macos-latest
+          #   flutter_os: ios
+          #   archive_path: build/ios/ipa/
+          #   artifact_name: release.zip
+          #   asset_name: fllama-ios
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone repository
