@@ -10,6 +10,9 @@ permissions:
 
 jobs:
   build:
+    env:
+      JAVA_OPTS: "-Xmx4g" # Give Java 4GB of RAM
+      GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g"
     strategy:
       matrix:
         include:
@@ -25,7 +28,7 @@ jobs:
             asset_name: fllama-android
           - os: windows-latest
             flutter_os: windows
-            archive_path: build/windows/runner/Release/
+            archive_path: build/windows/x64/runner/Release/
             artifact_name: release.zip
             asset_name: fllama-windows
           # - os: macos-latest
@@ -55,6 +58,8 @@ jobs:
         run: |
           flutter pub get
           flutter build ${{ matrix.flutter_os }}
+      - name: List files (Debug)
+        run: ls -R build/
       - name: Archive
         if: matrix.archive_path != 0
         uses: thedoctor0/zip-release@0.7.5
