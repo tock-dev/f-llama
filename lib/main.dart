@@ -7,6 +7,10 @@ import 'pages/settings.dart';
 
 Future<void> main() async {
   await GetStorage.init();
+  if (!(SettingsPage.box.read<bool>('initialized') ?? false)) {
+    SettingsPage.box.erase();
+    SettingsPage.box.write('initialized', true);
+  }
   runApp(const MyApp());
 }
 
